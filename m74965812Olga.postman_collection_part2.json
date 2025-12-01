@@ -1,0 +1,606 @@
+{
+	"info": {
+		"_postman_id": "555cee1c-ffc5-48a7-9b5e-ed429a8c77be",
+		"name": "m74965812Olga",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50174147",
+		"_collection_link": "https://olga25111983-4581212.postman.co/workspace/Belhard-Team's-Workspace~4aef2a09-4079-4827-87e0-13726dadd40a/collection/50174147-555cee1c-ffc5-48a7-9b5e-ed429a8c77be?action=share&source=collection_link&creator=50174147"
+	},
+	"item": [
+		{
+			"name": "Authorization Employee 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "yura.torbunov+test1@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test123",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://m74965812.megaplan.ru/api/v3/auth/access_token",
+					"protocol": "https",
+					"host": [
+						"m74965812",
+						"megaplan",
+						"ru"
+					],
+					"path": [
+						"api",
+						"v3",
+						"auth",
+						"access_token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Task",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответственный по задаче\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.responsible.id).to.eql(\"1000005\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Название задачи\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.name).to.eql(\"Клиент\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Статус задачи\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.status).to.eql(\"assigned\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer OWYwZTMxZTYzZGE3MDVkZjQ3YzUwMWNjYmZmMDlkYTllNmIyZDhjNjZiNWE3ZTZkYmQ1Mzk4NTk3ZDk4N2RhNQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"contentType\": \"Task\",\r\n    \"name\": \"Клиент\",\r\n    \"deadline\": null,\r\n    \"parent\": null,\r\n    \"isUrgent\": false,\r\n    \"isTemplate\": false,\r\n    \"owner\": {\r\n        \"id\": \"1000004\",\r\n        \"contentType\": \"Employee\"\r\n    },\r\n    \"responsible\": {\r\n        \"id\": \"1000005\",\r\n        \"contentType\": \"Employee\"\r\n    },\r\n    \"contractor\": null,\r\n    \"attaches\": [],\r\n    \"Category130CustomFieldPrioritet\": \"П3 Низкий\",\r\n    \"statement\": \"<p>предоставить клиенту прейскурант цен </p>\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://m74965812.megaplan.ru/api/v3/task",
+					"protocol": "https",
+					"host": [
+						"m74965812",
+						"megaplan",
+						"ru"
+					],
+					"path": [
+						"api",
+						"v3",
+						"task"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Description Task",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Описание задачи\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.textStatement).to.eql(\"Оформление счет фактуры на оказание бытовые услуг\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer OWYwZTMxZTYzZGE3MDVkZjQ3YzUwMWNjYmZmMDlkYTllNmIyZDhjNjZiNWE3ZTZkYmQ1Mzk4NTk3ZDk4N2RhNQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"1000164\",\r\n    \"contentType\": \"Task\",\r\n    \"attaches\": [],\r\n    \"statement\": \"<p>Оформление счет фактуры на оказание бытовые услуг</p>\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://m74965812.megaplan.ru/api/v3/task/1000164",
+					"protocol": "https",
+					"host": [
+						"m74965812",
+						"megaplan",
+						"ru"
+					],
+					"path": [
+						"api",
+						"v3",
+						"task",
+						"1000164"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authorization Employee 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer NDdhNWUzYTcwMzA4M2FlYThhZTI4NjdjYjlkZjYyMGI2ZjUxN2UwNDdkMGFjYWIwODA2OTE0MGYyNmExY2NkMg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "yura.torbunov+test2@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test123",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://m74965812.megaplan.ru/api/v3/auth/access_token",
+					"protocol": "https",
+					"host": [
+						"m74965812",
+						"megaplan",
+						"ru"
+					],
+					"path": [
+						"api",
+						"v3",
+						"auth",
+						"access_token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DO action Employee 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Статус задачи\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.status).to.eql(\"accepted\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer ZDAyZGM1YWZmZmQxNzA3NzE4NjQwMzQyN2VmMDE1YjMwMzE4MWUxN2FiMWNiMGVhMzg5N2ZiYmMzNDI1YThmMA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"act_accept_task\",\r\n    \"checkTodos\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://m74965812.megaplan.ru/api/v3/task/1000197/doAction",
+					"protocol": "https",
+					"host": [
+						"m74965812",
+						"megaplan",
+						"ru"
+					],
+					"path": [
+						"api",
+						"v3",
+						"task",
+						"1000197",
+						"doAction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Complete task Employee 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Статус задачи\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.status).to.eql(\"done\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer ZDAyZGM1YWZmZmQxNzA3NzE4NjQwMzQyN2VmMDE1YjMwMzE4MWUxN2FiMWNiMGVhMzg5N2ZiYmMzNDI1YThmMA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"act_done\",\r\n    \"checkTodos\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://m74965812.megaplan.ru/api/v3/task/1000197/doAction",
+					"protocol": "https",
+					"host": [
+						"m74965812",
+						"megaplan",
+						"ru"
+					],
+					"path": [
+						"api",
+						"v3",
+						"task",
+						"1000197",
+						"doAction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Comment on the task Employee 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Комментарий к задаче\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Задача выполнена\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer NDdhNWUzYTcwMzA4M2FlYThhZTI4NjdjYjlkZjYyMGI2ZjUxN2UwNDdkMGFjYWIwODA2OTE0MGYyNmExY2NkMg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"value\": {\r\n        \"Task/1000064\": {\r\n            \"content\": \"<p>Задача выполнена</p>\",\r\n            \"date\": 1764151876315\r\n        }\r\n    },\r\n    \"contentType\": \"UserSetting\",\r\n    \"id\": \"global_drafts\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://m74965812.megaplan.ru/api/v3/userSetting/global_drafts",
+					"protocol": "https",
+					"host": [
+						"m74965812",
+						"megaplan",
+						"ru"
+					],
+					"path": [
+						"api",
+						"v3",
+						"userSetting",
+						"global_drafts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authorization Employee 1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "yura.torbunov+test1@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test123",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://m74965812.megaplan.ru/api/v3/auth/access_token",
+					"protocol": "https",
+					"host": [
+						"m74965812",
+						"megaplan",
+						"ru"
+					],
+					"path": [
+						"api",
+						"v3",
+						"auth",
+						"access_token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Accept the task Employee 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.status).to.eql(\"completed\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer NzQwYTBjNzBmNjM0OTAwNWNhMzFjOWI0MzM0YTU1NjFlNDZmYzAzMWEzNjJlZDYxMWI4NTkzNTM2Mzg4YjM3NQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"act_accept_work\",\r\n    \"checkTodos\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://m74965812.megaplan.ru/api/v3/task/1000164/doAction",
+					"protocol": "https",
+					"host": [
+						"m74965812",
+						"megaplan",
+						"ru"
+					],
+					"path": [
+						"api",
+						"v3",
+						"task",
+						"1000164",
+						"doAction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete the task Employee 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Удаление задания\", function () {\r",
+							"    pm.response.to.have.body({\r",
+							"    \"meta\": {\r",
+							"        \"status\": 200,\r",
+							"        \"errors\": [],\r",
+							"        \"pagination\": {\r",
+							"            \"count\": 1\r",
+							"        }\r",
+							"    },\r",
+							"    \"data\": [\r",
+							"        {\r",
+							"            \"contentType\": \"MassActionResult\",\r",
+							"            \"entity\": {\r",
+							"                \"contentType\": \"Task\",\r",
+							"                \"id\": \"1000080\"\r",
+							"            },\r",
+							"            \"isSucceed\": false,\r",
+							"            \"message\": \"Not Found Task with id = 1000080\"\r",
+							"        }\r",
+							"    ]\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer NzQwYTBjNzBmNjM0OTAwNWNhMzFjOWI0MzM0YTU1NjFlNDZmYzAzMWEzNjJlZDYxMWI4NTkzNTM2Mzg4YjM3NQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"entities\": [\r\n        {\r\n            \"id\": \"1000080\",\r\n            \"contentType\": \"Task\"\r\n        }\r\n    ],\r\n    \"withNotifications\": false,\r\n    \"contentType\": \"MassActionDelete\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://m74965812.megaplan.ru/api/v3/massActionDelete",
+					"protocol": "https",
+					"host": [
+						"m74965812",
+						"megaplan",
+						"ru"
+					],
+					"path": [
+						"api",
+						"v3",
+						"massActionDelete"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

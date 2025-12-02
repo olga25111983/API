@@ -16,7 +16,13 @@
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
-							"});"
+							"});\r",
+							"//tests\r",
+							"//Variables\r",
+							"var response = pm.response.json();\r",
+							"pm.collectionVariables.set(\"access_token1\", response.access_token);\r",
+							"\r",
+							"    "
 						],
 						"type": "text/javascript",
 						"packages": {},
@@ -89,7 +95,12 @@
 							"pm.test(\"Статус задачи\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(jsonData.data.status).to.eql(\"assigned\");\r",
-							"});"
+							"});\r",
+							"//tests\r",
+							" var jsonData = pm.response.json();\r",
+							"pm.collectionVariables.set(\"contration_id\", jsonData.data.id);\r",
+							"\r",
+							""
 						],
 						"type": "text/javascript",
 						"packages": {},
@@ -102,7 +113,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer OWYwZTMxZTYzZGE3MDVkZjQ3YzUwMWNjYmZmMDlkYTllNmIyZDhjNjZiNWE3ZTZkYmQ1Mzk4NTk3ZDk4N2RhNQ",
+						"value": "Bearer {{access_token1}}",
 						"type": "text"
 					}
 				],
@@ -158,7 +169,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer OWYwZTMxZTYzZGE3MDVkZjQ3YzUwMWNjYmZmMDlkYTllNmIyZDhjNjZiNWE3ZTZkYmQ1Mzk4NTk3ZDk4N2RhNQ",
+						"value": "Bearer {{access_token1}}",
 						"type": "text"
 					}
 				],
@@ -172,7 +183,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://m74965812.megaplan.ru/api/v3/task/1000164",
+					"raw": "https://m74965812.megaplan.ru/api/v3/task/{{contration_id}}",
 					"protocol": "https",
 					"host": [
 						"m74965812",
@@ -183,7 +194,7 @@
 						"api",
 						"v3",
 						"task",
-						"1000164"
+						"{{contration_id}}"
 					]
 				}
 			},
@@ -198,7 +209,11 @@
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
-							"});"
+							"});\r",
+							"//tests\r",
+							"//Variables\r",
+							"var response = pm.response.json();\r",
+							"pm.collectionVariables.set(\"access_token2\", response.access_token);"
 						],
 						"type": "text/javascript",
 						"packages": {},
@@ -279,7 +294,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer ZDAyZGM1YWZmZmQxNzA3NzE4NjQwMzQyN2VmMDE1YjMwMzE4MWUxN2FiMWNiMGVhMzg5N2ZiYmMzNDI1YThmMA",
+						"value": "Bearer {{access_token2}}",
 						"type": "text"
 					}
 				],
@@ -293,7 +308,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://m74965812.megaplan.ru/api/v3/task/1000197/doAction",
+					"raw": "https://m74965812.megaplan.ru/api/v3/task/{{contration_id}}/doAction",
 					"protocol": "https",
 					"host": [
 						"m74965812",
@@ -304,7 +319,7 @@
 						"api",
 						"v3",
 						"task",
-						"1000197",
+						"{{contration_id}}",
 						"doAction"
 					]
 				}
@@ -337,7 +352,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer ZDAyZGM1YWZmZmQxNzA3NzE4NjQwMzQyN2VmMDE1YjMwMzE4MWUxN2FiMWNiMGVhMzg5N2ZiYmMzNDI1YThmMA",
+						"value": "Bearer {{access_token2}}",
 						"type": "text"
 					}
 				],
@@ -351,7 +366,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://m74965812.megaplan.ru/api/v3/task/1000197/doAction",
+					"raw": "https://m74965812.megaplan.ru/api/v3/task/{{contration_id}}/doAction",
 					"protocol": "https",
 					"host": [
 						"m74965812",
@@ -362,7 +377,7 @@
 						"api",
 						"v3",
 						"task",
-						"1000197",
+						"{{contration_id}}",
 						"doAction"
 					]
 				}
@@ -381,7 +396,7 @@
 							"});\r",
 							"\r",
 							"pm.test(\"Комментарий к задаче\", function () {\r",
-							"    pm.expect(pm.response.text()).to.include(\"Задача выполнена\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"Счет-фактура отправлена\");\r",
 							"});"
 						],
 						"type": "text/javascript",
@@ -395,13 +410,13 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer NDdhNWUzYTcwMzA4M2FlYThhZTI4NjdjYjlkZjYyMGI2ZjUxN2UwNDdkMGFjYWIwODA2OTE0MGYyNmExY2NkMg",
+						"value": "Bearer {{access_token2}}",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"value\": {\r\n        \"Task/1000064\": {\r\n            \"content\": \"<p>Задача выполнена</p>\",\r\n            \"date\": 1764151876315\r\n        }\r\n    },\r\n    \"contentType\": \"UserSetting\",\r\n    \"id\": \"global_drafts\"\r\n}",
+					"raw": "{\r\n    \"contentType\": \"CommentCreateActionRequest\",\r\n    \"comment\": {\r\n        \"contentType\": \"Comment\",\r\n        \"content\": \"<p>Счет-фактура отправлена</p>\",\r\n        \"attaches\": [],\r\n        \"workTime\": null,\r\n        \"workDate\": {\r\n            \"contentType\": \"DateTime\",\r\n            \"value\": \"2025-12-02T19:37:06.319Z\"\r\n        },\r\n        \"completed\": 0,\r\n        \"owner\": {\r\n            \"id\": \"1000005\",\r\n            \"contentType\": \"Employee\"\r\n        },\r\n        \"subject\": {\r\n            \"id\": \"1000311\",\r\n            \"contentType\": \"Task\"\r\n        },\r\n        \"timeCreated\": {\r\n            \"contentType\": \"DateTime\",\r\n            \"value\": \"2025-12-02T19:40:40.382Z\"\r\n        }\r\n    },\r\n    \"transports\": [\r\n        {}\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -409,7 +424,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://m74965812.megaplan.ru/api/v3/userSetting/global_drafts",
+					"raw": "https://m74965812.megaplan.ru/api/v3/task/{{contration_id}}/comments",
 					"protocol": "https",
 					"host": [
 						"m74965812",
@@ -419,8 +434,9 @@
 					"path": [
 						"api",
 						"v3",
-						"userSetting",
-						"global_drafts"
+						"task",
+						"{{contration_id}}",
+						"comments"
 					]
 				}
 			},
@@ -428,6 +444,25 @@
 		},
 		{
 			"name": "Authorization Employee 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"//tests\r",
+							"//Variables\r",
+							"var response = pm.response.json();\r",
+							"pm.collectionVariables.set(\"access_token1\", response.access_token);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -495,7 +530,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer NzQwYTBjNzBmNjM0OTAwNWNhMzFjOWI0MzM0YTU1NjFlNDZmYzAzMWEzNjJlZDYxMWI4NTkzNTM2Mzg4YjM3NQ",
+						"value": "Bearer {{access_token1}}",
 						"type": "text"
 					}
 				],
@@ -509,7 +544,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://m74965812.megaplan.ru/api/v3/task/1000164/doAction",
+					"raw": "https://m74965812.megaplan.ru/api/v3/task/{{contration_id}}/doAction",
 					"protocol": "https",
 					"host": [
 						"m74965812",
@@ -520,7 +555,7 @@
 						"api",
 						"v3",
 						"task",
-						"1000164",
+						"{{contration_id}}",
 						"doAction"
 					]
 				}
@@ -538,28 +573,11 @@
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"pm.test(\"Удаление задания\", function () {\r",
-							"    pm.response.to.have.body({\r",
-							"    \"meta\": {\r",
-							"        \"status\": 200,\r",
-							"        \"errors\": [],\r",
-							"        \"pagination\": {\r",
-							"            \"count\": 1\r",
-							"        }\r",
-							"    },\r",
-							"    \"data\": [\r",
-							"        {\r",
-							"            \"contentType\": \"MassActionResult\",\r",
-							"            \"entity\": {\r",
-							"                \"contentType\": \"Task\",\r",
-							"                \"id\": \"1000080\"\r",
-							"            },\r",
-							"            \"isSucceed\": false,\r",
-							"            \"message\": \"Not Found Task with id = 1000080\"\r",
-							"        }\r",
-							"    ]\r",
+							"pm.test(\"Наличие текста в ответе\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data[0].message).to.eql(\"Not Found Task with id = \" + pm.collectionVariables.get(\"contration_id\"));\r",
 							"});\r",
-							"});"
+							""
 						],
 						"type": "text/javascript",
 						"packages": {},
@@ -572,13 +590,13 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer NzQwYTBjNzBmNjM0OTAwNWNhMzFjOWI0MzM0YTU1NjFlNDZmYzAzMWEzNjJlZDYxMWI4NTkzNTM2Mzg4YjM3NQ",
+						"value": "Bearer {{access_token1}}",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"entities\": [\r\n        {\r\n            \"id\": \"1000080\",\r\n            \"contentType\": \"Task\"\r\n        }\r\n    ],\r\n    \"withNotifications\": false,\r\n    \"contentType\": \"MassActionDelete\"\r\n}",
+					"raw": "{\r\n    \"entities\": [\r\n        {\r\n            \"id\": \"{{contration_id}}\",\r\n            \"contentType\": \"Task\"\r\n        }\r\n    ],\r\n    \"withNotifications\": false,\r\n    \"contentType\": \"MassActionDelete\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -601,6 +619,44 @@
 				}
 			},
 			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "access_token1",
+			"value": ""
+		},
+		{
+			"key": "access_token2",
+			"value": ""
+		},
+		{
+			"key": "contration_id",
+			"value": ""
 		}
 	]
 }

@@ -514,7 +514,7 @@
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
-							"pm.test(\"Your test name\", function () {\r",
+							"pm.test(\"Статус задачи\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(jsonData.data.status).to.eql(\"completed\");\r",
 							"});"
@@ -563,7 +563,7 @@
 			"response": []
 		},
 		{
-			"name": "Delete the task Employee 1",
+			"name": "DELETE the task Employee 1",
 			"event": [
 				{
 					"listen": "test",
@@ -573,11 +573,10 @@
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"pm.test(\"Наличие текста в ответе\", function () {\r",
+							"pm.test(\"Наличие текста\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData.data[0].message).to.eql(\"Not Found Task with id = \" + pm.collectionVariables.get(\"contration_id\"));\r",
-							"});\r",
-							""
+							"    pm.expect(jsonData.data).to.eql(\"Task successfully removed\");\r",
+							"});"
 						],
 						"type": "text/javascript",
 						"packages": {},
@@ -586,7 +585,7 @@
 				}
 			],
 			"request": {
-				"method": "POST",
+				"method": "DELETE",
 				"header": [
 					{
 						"key": "Authorization",
@@ -596,7 +595,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"entities\": [\r\n        {\r\n            \"id\": \"{{contration_id}}\",\r\n            \"contentType\": \"Task\"\r\n        }\r\n    ],\r\n    \"withNotifications\": false,\r\n    \"contentType\": \"MassActionDelete\"\r\n}",
+					"raw": "{}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -604,7 +603,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://m74965812.megaplan.ru/api/v3/massActionDelete",
+					"raw": "https://m74965812.megaplan.ru/api/v3/task/{{contration_id}}",
 					"protocol": "https",
 					"host": [
 						"m74965812",
@@ -614,7 +613,8 @@
 					"path": [
 						"api",
 						"v3",
-						"massActionDelete"
+						"task",
+						"{{contration_id}}"
 					]
 				}
 			},
